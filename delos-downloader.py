@@ -25,7 +25,7 @@ def downloadFile(res):
 
     metas = soup.find_all('meta')
     desc = [meta.attrs['content'] for meta in metas if 'name' in meta.attrs and meta.attrs['name'] == 'description' ]
-    file = 'downloads/' + desc[0] + '.mp4'
+    file = 'downloads/' + desc[0].strip(' \t\n\r') + '.mp4'
 
     # Streaming, so we can iterate over the response.
     r = requests.get(res[1], stream=True)
